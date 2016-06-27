@@ -1,0 +1,7 @@
+{
+  "name": "dailyprogrammer",
+  "private": true,
+  "devDependencies": {
+    "babel-preset-es2015": "^6.1.18"
+  }
+}
