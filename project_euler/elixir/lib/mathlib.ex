@@ -125,4 +125,18 @@ defmodule ProjectEuler.Mathlib do
   def is_pythagorean_triplet(a, b, c) do
     (a * a) + (b * b) == (c * c)
   end
+
+  @doc """
+  Get the factorial of a number
+
+  ## Example
+  iex> ProjectEuler.Mathlib.factorial(4)
+  24
+  iex> ProjectEuler.Mathlib.factorial(10)
+  3628800
+  """
+  def factorial(0), do: 1
+  def factorial(n) when n > 0 do
+    n * factorial(n - 1)
+  end
 end
