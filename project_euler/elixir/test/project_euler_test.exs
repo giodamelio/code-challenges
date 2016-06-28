@@ -48,4 +48,9 @@ defmodule ProjectEulerTest do
   test "Problem 21" do
     assert ProjectEuler.P0021.solve(10000) == 31626
   end
+
+  @tag slow: true
+  test "Problem 25" do
+    assert ProjectEuler.P0025.solve(1000) == 4782
+  end
 end
