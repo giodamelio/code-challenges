@@ -139,4 +139,55 @@ defmodule ProjectEuler.Mathlib do
   def factorial(n) when n > 0 do
     n * factorial(n - 1)
   end
+
+  @doc """
+  Find the factors of a number
+
+  ## Example
+  iex> ProjectEuler.Mathlib.factors(12)
+  [1, 2, 3, 4, 6, 12]
+  """
+  def factors(n) do
+    factors(n, 1, []) |> Enum.sort
+  end
+
+  defp factors(n, i, f) when n < i * i, do: f
+  defp factors(n, i, f) when n == i * i, do: [i | f]
+  defp factors(n, i, f) when rem(n, i) == 0 do
+    factors(n, i + 1, [i, div(n, i) | f])
+  end
+  defp factors(n, i, f), do: factors(n, i + 1, f)
+
+  @doc """
+  Checks if a number is an amicable number
+
+  ## Example
+  iex> ProjectEuler.Mathlib.is_amicable_number(220)
+  true
+  iex> ProjectEuler.Mathlib.is_amicable_number(17)
+  false
+  """
+  def is_amicable_number(a) do
+    b = amicable_convert(a)
+    c = amicable_convert(b)
+    b != c && a == c
+  end
+  defp amicable_convert(n) do
+    factors(n) |> List.delete_at(-1) |> Enum.sum
+  end
+
+  @doc """
+  Create a lazy stream of amicable numbers
+
+  ## Example
+  iex> ProjectEuler.Mathlib.amicable_numbers |> Enum.take(10)
+  [220, 284, 1184, 1210, 2620, 2924, 5020, 5564, 6232, 6368]
+  """
+  def amicable_numbers do
+    Stream.unfold(1, fn (acc) ->
+      {acc, acc + 1}
+    end) |> Stream.filter(fn (n) ->
+      is_amicable_number(n)
+    end)
+  end
 end
