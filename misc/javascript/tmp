@@ -1,0 +1,8 @@
+function valid_parens(parens) {
+  return parens
+    .split('')
+    .filter((p) => p === '(' || p === ')')
+}
+
+console.log(valid_parens('()'));
+console.log(valid_parens('  ('));
