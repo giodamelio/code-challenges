@@ -9,6 +9,17 @@
     (require (symbol problem-ns))
     (load-string (str problem-ns "/answer"))))
 
+(def answers (map (partial bigint)
+                  (clojure.string/split-lines (slurp "../problems/answers.txt"))))
+
+(defn check-problem
+  "Check to see if the answer to a problem is correct"
+  [number]
+  (let [real-answer (nth answers (dec number) -1)]
+    (if (= real-answer -1)
+      (str "Problem #" number " has not been solved")
+      (= real-answer (run-problem number)))))
+
 (defn -main
   "Run a problem"
   [& args]
