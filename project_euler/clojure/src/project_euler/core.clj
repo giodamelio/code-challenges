@@ -6,8 +6,11 @@
   [n]
   (let [number (format "%04d" n)
         problem-ns (str "project-euler.problems.p" number)]
-    (require (symbol problem-ns))
-    (load-string (str problem-ns "/answer"))))
+    (try
+      (require (symbol problem-ns))
+      (load-string (str problem-ns "/answer"))
+      (catch java.io.FileNotFoundException e
+        (str "Problem #" number " does not exist")))))
 
 (def answers (map (partial bigint)
                   (clojure.string/split-lines (slurp "../problems/answers.txt"))))
@@ -17,7 +20,7 @@
   [number]
   (let [real-answer (nth answers (dec number) -1)]
     (if (= real-answer -1)
-      (str "Problem #" number " has not been solved")
+      (str "Solution to problem #" number " is not in the answers file")
       (= real-answer (run-problem number)))))
 
 (defn -main
