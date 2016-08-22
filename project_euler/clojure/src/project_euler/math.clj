@@ -13,3 +13,8 @@
      (zero? (rem n candidate)) (cons candidate
                                      (lazy-seq (prime-factors (/ n candidate) candidate)))
      :else (recur n (inc candidate)))))
+
+(defn palindrome?
+  "Check if a string or number is a palindrome"
+  [input]
+  (= (clojure.string/reverse (str input)) (str input)))
