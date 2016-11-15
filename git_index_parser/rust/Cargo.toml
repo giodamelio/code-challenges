@@ -1,0 +1,6 @@
+[package]
+name = "git-index-parser"
+version = "0.1.0"
+authors = ["Gio d'Amelio <giodamelio@gmail.com>"]
+
+[dependencies]
