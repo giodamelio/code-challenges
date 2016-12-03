@@ -39,3 +39,7 @@
     (is (= (directions-to-path (parse-path "R2, R2, R2"))
            {:facing :W
             :path '([0 0] [1 0] [2 0] [2 -1] [2 -2] [1 -2] [0 -2])}))))
+
+(deftest find-first-duplicate-test
+  (testing "find first duplicate"
+    (is (= (find-first-duplicate [1 2 3 2 3]) 2))))
