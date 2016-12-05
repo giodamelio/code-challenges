@@ -5,11 +5,16 @@
   "Run a specific challenge"
   [n]
   (let [number (format "%02d" n)
-        problem-ns (str "aoc.challenge.c" number)]
+        problem-ns (str "aoc.challenge.c" number)
+        input (slurp (str "inputs/" number ".txt"))]
     (try
       (require (symbol problem-ns))
-      (println (str "Part 1: " (load-string (str "(" problem-ns "/answer-part-1)"))))
-      (println (str "Part 2: " (load-string (str "(" problem-ns "/answer-part-2)"))))
+      (println (str "Part 1: "
+                    (load-string
+                     (str "(" problem-ns "/answer-part-1 \"" input "\")"))))
+      (println (str "Part 2: "
+                    (load-string
+                     (str "(" problem-ns "/answer-part-2 \"" input "\")"))))
       (catch java.io.FileNotFoundException e
         (str "Problem #" number " does not exist")))))
 
