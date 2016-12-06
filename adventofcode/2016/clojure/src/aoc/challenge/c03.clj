@@ -18,7 +18,21 @@
        (> (+ b c) a)
        (> (+ a c) b)))
 
+(defn rotate-and-split [triangles]
+  "Do a right matrix rotate on the numbers, then split them back into groups of three"
+  (->> triangles
+       ;; Rotate to the right
+       (apply map list)
+       ;; Split into chunks of three
+       (reduce #(concat (partition 3 %2) %1) '())))
+
 (defn answer-part-1 [input]
   (->> (parse-triangles input)
+       (filter valid-triangle?)
+       (count)))
+
+(defn answer-part-2 [input]
+  (->> (parse-triangles input)
+       (rotate-and-split)
        (filter valid-triangle?)
        (count)))
