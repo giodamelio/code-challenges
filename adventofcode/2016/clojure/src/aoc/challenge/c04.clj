@@ -36,6 +36,19 @@
   "Check if a room is valid"
   (= (checksum-from-freqs (letter-frequencies name)) checksum))
 
+(defn decrypt [input num]
+  "Decrypt the Caesar cipher"
+  (let [alphabet (map char "abcdefghijklmnopqrstuvwxyz")
+        alphabet-shifted (->> (cycle alphabet)
+                              (take (+ num 26))
+                              (drop num))
+        ;; Build our key and add special case for spaces
+        key (assoc (zipmap alphabet alphabet-shifted) \- \space)]
+    (->> input
+         (map char)
+         (map key)
+         (apply str))))
+
 (defn answer-part-1 [input]
   (->> (str/split input #"\n")
        (map parse-room)
@@ -45,4 +58,13 @@
        (reduce +)))
 
 (defn answer-part-2 [input]
-  10)
+  (->> (str/split input #"\n")
+       (map parse-room)
+       (filter valid-room?)
+       (map #(identity [(decrypt
+                         (:name %1)
+                         (Integer/parseInt (:sector-id %1)))
+                        (:sector-id %1)]))
+       (filter #(= (first %1) "northpole object storage"))
+       (first)
+       (last)))

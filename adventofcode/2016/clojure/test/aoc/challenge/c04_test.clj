@@ -23,3 +23,6 @@
 (fact "valid-room?"
       (valid-room? {:name "aaaaa-bbb-z-y-x", :sector-id "123", :checksum "abxyz"}) => true
       (valid-room? {:name "totally-real-room", :sector-id "200", :checksum "decoy"}) => false)
+
+(fact "decrypt"
+      (decrypt "qzmt-zixmtkozy-ivhz" 343) => "very encrypted name")
