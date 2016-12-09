@@ -1,6 +1,11 @@
 (ns aoc.challenge.c07
   (:require [clojure.string :as str]))
 
+(defn parse-ipv7 [input]
+  "Parse an IPv7 address into its supernet and hypernet parts"
+  {:hypernet (map last (re-seq #"\[([a-z]+)\]" input))
+   :supernet (re-seq #"[a-z]+(?![^\[]*\])" input)})
+
 (defn is-abba? [input]
   "Check if a string is an abba(ie a four char palindrome that is not all the same char"
   (and (= input (str/reverse input))
@@ -19,23 +24,14 @@
 
 (defn ipv7-supports-tls? [input]
   "Check if an IPv7 ip supports tls"
-  (boolean
-   (and
-    ;; Check if there are any abba's inside square brackets
-    (->> input
-         ;; Find square bracket groups
-         (re-seq #"\[([a-z]+)\]")
-         ;; Get just the inside strings
-         (map last)
-         ;; Make sure none of them contain abba's
-         (every? (complement contains-abba?)))
-    ;; Check if there is an abba outside a bracket group
-    (->> input
-         ;; Get just the text outside the square brackets
-         (re-seq #"[a-z]+(?![^\[]*\])")
-         ;; Check if any of the strings contain an abba
-         (map contains-abba?)
-         (some true?)))))
+  (let [{hypernet :hypernet
+         supernet :supernet} (parse-ipv7 input)]
+    (boolean
+     (and
+      ;; Check if there are any abba's inside square brackets
+      (every? (complement contains-abba?) hypernet)
+      ;; Check if there is an abba outside a bracket group
+      (some true? (map contains-abba? supernet))))))
 
 (defn answer-part-1 [input]
   (->> (str/split input #"\n")

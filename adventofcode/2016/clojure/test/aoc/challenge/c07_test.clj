@@ -2,6 +2,10 @@
   (:require [midje.sweet :refer :all]
             [aoc.challenge.c07 :refer :all]))
 
+(fact "parse-ipv7"
+      (parse-ipv7 "aaaa[qwer]tyui[add]e") =>
+      {:hypernet '("qwer" "add"), :supernet '("aaaa" "tyui" "e")})
+
 (fact "is-abba?"
       (is-abba? "abba") => true
       (is-abba? "aaaa") => false
