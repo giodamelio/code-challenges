@@ -18,3 +18,13 @@
        (map #(sort-by last > %1))
        (map (comp first first))
        (apply str)))
+
+(defn answer-part-2 [input]
+  (->> input
+       (parse-input)
+       (matrix-rotate)
+       (map frequencies)
+       (map vec)
+       (map #(sort-by last < %1))
+       (map (comp first first))
+       (apply str)))
