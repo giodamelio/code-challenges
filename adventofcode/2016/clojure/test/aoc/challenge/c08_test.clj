@@ -10,17 +10,6 @@
  [1 2 3]   0       [1 2 3]
  [1 2 3]  -1       [1 2 3])
 
-(fact "transpose"
-      (transpose [[:# :# :#]
-                  [:. :. :.]
-                  [:. :. :.]]) =>
-      [[:# :. :.]
-       [:# :. :.]
-       [:# :. :.]])
-
-(fact "parse-int"
-      (parse-int "2222") => 2222)
-
 (fact "screen-create"
       (screen-create 5 5) => (five-of (five-of :.))
       (screen-create) => (six-of (n-of :. 50)))

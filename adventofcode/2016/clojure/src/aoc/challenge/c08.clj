@@ -1,5 +1,6 @@
 (ns aoc.challenge.c08
-  (:require [clojure.string :as str]))
+  (:require [clojure.string :as str]
+            [aoc.util :as util]))
 
 ; Vector and matrix utils
 (defn rotate-vector
@@ -7,14 +8,6 @@
   [coll n]
   (let [len (count coll)]
     (vec (take len (drop (* n (dec len)) (cycle coll))))))
-
-(defn transpose
-  "Transpost a screen"
-  [screen]
-  (vec (apply map vector screen)))
-
-(defn parse-int [s]
-   (Integer. (re-find  #"\d+" s )))
 
 (defn screen-create
   "Creates a 2d list of :. to repersent an empty screen. Optionally specify screen size"
@@ -81,7 +74,11 @@
 (defn screen-transform-rotate-col
   "Rotate a col x of the screen down by n. If row is larger then the screen height, return screen unchanged."
   [x n screen]
-  (transpose (screen-transform-rotate-row x n (transpose screen))))
+  (util/transpose-vector
+   (screen-transform-rotate-row
+    x
+    n
+    (util/transpose-vector screen))))
 
 (def command-regex #"^(rect|rotate row|rotate column) (?:(\d+)x(\d+)|(?:x|y)=(\d+) by (\d+))$")
 (defn parse-command
@@ -89,8 +86,8 @@
   [line]
   (let [tokens (remove nil? (rest (re-find command-regex line)))
         type (keyword (str/join "-" (str/split (first tokens) #" ")))
-        arg1 (parse-int (nth tokens 1))
-        arg2 (parse-int (nth tokens 2))]
+        arg1 (util/parse-int (nth tokens 1))
+        arg2 (util/parse-int (nth tokens 2))]
     (list type arg1 arg2)))
 
 (defn apply-commands-to-screen
