@@ -1,6 +1,7 @@
 (ns aoc.challenge.c08-test
   (:require [midje.sweet :refer :all]
-            [aoc.challenge.c08 :refer :all]))
+            [aoc.challenge.c08 :refer :all]
+            [aoc.util :refer [load-input]]))
 
 (tabular
  (fact "rotate-vector" (rotate-vector ?input ?count) => ?output)
@@ -102,5 +103,15 @@
       [[:. :. :.]
        [:. :# :.]
        [:. :. :.]])
-                                
 
+(fact "answer-part-1"
+      (answer-part-1 (load-input)) => 115)
+
+(fact "answer-part-2"
+      (answer-part-2 (load-input)) => "
+####.####.####.#...##..#.####.###..####..###...##.
+#....#....#....#...##.#..#....#..#.#......#.....#.
+###..###..###...#.#.##...###..#..#.###....#.....#.
+#....#....#......#..#.#..#....###..#......#.....#.
+#....#....#......#..#.#..#....#.#..#......#..#..#.
+####.#....####...#..#..#.#....#..#.#.....###..##..")

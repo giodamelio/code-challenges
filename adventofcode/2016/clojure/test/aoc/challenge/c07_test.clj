@@ -1,6 +1,7 @@
 (ns aoc.challenge.c07-test
   (:require [midje.sweet :refer :all]
-            [aoc.challenge.c07 :refer :all]))
+            [aoc.challenge.c07 :refer :all]
+            [aoc.util :refer [load-input]]))
 
 (fact "parse-ipv7"
       (parse-ipv7 "aaaa[qwer]tyui[add]e") =>
@@ -53,3 +54,9 @@
       (ipv7-supports-ssl? "xyx[xyx]xyx") => false
       (ipv7-supports-ssl? "aaa[kek]eke") => true
       (ipv7-supports-ssl? "zazbz[bzb]cdb") => true)
+
+(fact "answer-part-1"
+      (answer-part-1 (load-input)) => 105)
+
+(fact "answer-part-2"
+      (answer-part-2 (load-input)) => 258)

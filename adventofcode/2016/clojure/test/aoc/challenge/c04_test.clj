@@ -1,6 +1,7 @@
 (ns aoc.challenge.c04-test
   (:require [midje.sweet :refer :all]
-            [aoc.challenge.c04 :refer :all]))
+            [aoc.challenge.c04 :refer :all]
+            [aoc.util :refer [load-input]]))
 
 (fact "parse-room"
       (parse-room "aaaaa-bbb-z-y-x-123[abxyz]") =>
@@ -26,3 +27,9 @@
 
 (fact "decrypt"
       (decrypt "qzmt-zixmtkozy-ivhz" 343) => "very encrypted name")
+
+(fact "answer-part-1"
+      (answer-part-1 (load-input)) => 361724)
+
+(fact "answer-part-2"
+      (answer-part-2 (load-input)) => "482")

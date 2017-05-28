@@ -1,6 +1,7 @@
 (ns aoc.challenge.c02-test
   (:require [midje.sweet :refer :all]
-            [aoc.challenge.c02 :refer :all]))
+            [aoc.challenge.c02 :refer :all]
+            [aoc.util :refer [load-input]]))
 
 (fact "go"
       (fact "normal"
@@ -48,3 +49,9 @@
                       [:L :U :R :D :L]
                       [:U :U :U :U :D]) go-normal) =>
       '(1 9 8 5))
+
+(fact "answer-part-1"
+      (answer-part-1 (load-input)) => '(8 4 4 5 2))
+
+(fact "answer-part-2"
+      (answer-part-2 (load-input)) => '("D" 6 5 "C" 3))

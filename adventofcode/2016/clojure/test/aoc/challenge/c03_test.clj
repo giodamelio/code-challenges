@@ -1,6 +1,7 @@
 (ns aoc.challenge.c03-test
   (:require [midje.sweet :refer :all]
-            [aoc.challenge.c03 :refer :all]))
+            [aoc.challenge.c03 :refer :all]
+            [aoc.util :refer [load-input]]))
 
 (fact "parse-triangles"
       (parse-triangles "10 10 10\n2 2 2\n 11     11  11 ") =>
@@ -13,5 +14,21 @@
       (valid-triangle? '(5 10 14)) => true)
 
 (fact "rotate-and-split"
-      (rotate-and-split '((101 301 501) (102 302 502) (103 303 503) (201 401 601) (202 402 602) (203 403 603))) =>
-      '((501 502 503) (601 602 603) (301 302 303) (401 402 403) (101 102 103) (201 202 203)))
+      (rotate-and-split '((101 301 501)
+                          (102 302 502)
+                          (103 303 503)
+                          (201 401 601)
+                          (202 402 602)
+                          (203 403 603))) =>
+      '((501 502 503)
+        (601 602 603)
+        (301 302 303)
+        (401 402 403)
+        (101 102 103)
+        (201 202 203)))
+
+(fact "answer-part-1"
+      (answer-part-1 (load-input)) => 1032)
+
+(fact "answer-part-2"
+      (answer-part-2 (load-input)) => 1838)

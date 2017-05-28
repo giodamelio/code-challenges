@@ -14,3 +14,6 @@
     (take 8)
     (map #(nth %1 5))
     (apply str)))
+
+(defn answer-part-2 [input]
+  "NOT COMPLETE")

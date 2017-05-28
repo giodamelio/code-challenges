@@ -1,6 +1,7 @@
 (ns aoc.challenge.c01-test
   (:require [midje.sweet :refer :all]
-            [aoc.challenge.c01 :refer :all]))
+            [aoc.challenge.c01 :refer :all]
+            [aoc.util :refer [load-input]]))
 
 (fact "manhatten-distance"
       (manhatten-distance [0 0] [2 2]) => 4)
@@ -9,13 +10,17 @@
       (parse-path "R22, R9, L33") => [[:R 22] [:R 9] [:L 33]]
       (parse-path "R22,R9,L33") => [[:R 22] [:R 9] [:L 33]])
 
-(fact "turn-test"
+(fact "turn"
       (fact "turn right"
             (turn :N :R) => :E
-            (turn :S :R) => :W)
+            (turn :E :R) => :S
+            (turn :S :R) => :W
+            (turn :W :R) => :N)
       (fact "turn left"
+            (turn :N :L) => :W
+            (turn :E :L) => :N
             (turn :S :L) => :E
-            (turn :N :L) => :W))
+            (turn :W :L) => :S))
 
 (fact "go"
       (fact "north"
@@ -35,3 +40,10 @@
 
 (fact "find-first-duplicate"
     (find-first-duplicate [1 2 3 2 3]) => 2)
+
+(fact "answer-part-1"
+      (answer-part-1 (load-input)) => 146)
+
+(fact "answer-part-2"
+      (answer-part-2 (load-input)) => 131)
+
