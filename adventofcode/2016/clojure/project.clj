@@ -5,7 +5,6 @@
             :url "http://www.eclipse.org/legal/epl-v10.html"}
   :dependencies [[org.clojure/clojure "1.8.0"]
                  [digest "1.4.5"]]
-  :main ^:skip-aot aoc.core
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}
              :dev {:dependencies [[midje "1.8.3"]]}})
