@@ -24,3 +24,18 @@
       [[1 4 7]
        [2 5 8]
        [3 6 9]])
+
+(fact "get-capture-groups"
+      (let [get-capture-groups #'aoc.util/get-capture-groups]
+        (get-capture-groups #"(?<letter>[a-z]+) (?<number>\d+)") =>
+        '("letter" "number")
+        (get-capture-groups #"") =>
+        '()))
+
+(fact "re-find-named-groups"
+      (re-find-named-groups #"(?<letter>[a-z]+) (?<number>\d+)" "abc 22") =>
+      {:letter "abc"
+       :number "22"}
+      (re-find-named-groups #"([a-z]+) (\d+)" "abc 22") => {}
+      (re-find-named-groups #"[a-z]+ \d+" "abc 22") => {}
+      (re-find-named-groups #"^\d+$" "abc") => {})
