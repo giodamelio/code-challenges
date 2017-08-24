@@ -1,5 +1,11 @@
 const input = [1, 3, 10, 5, 3, 12, 2, 10];
 
+function color(text, index) {
+  // Convert index to a number between 31 and 36
+  const colorNum = String(31 + index % 6);
+  return '\x1b[' + colorNum + 'm' + text + '\x1b[0m';
+}
+
 function barChart(numbers) {
   const tallest = Math.max(...input);
   const boxWidth = String(tallest).length;
@@ -9,13 +15,15 @@ function barChart(numbers) {
     let line = ' ';
     for (let x = 0; x < numbers.length; x++) {
       const number = numbers[x];
+      let bar = '';
       if (number > y) {
-        line += '┃' + ' '.repeat(boxWidth) + '┃ ';
+        bar += '┃' + ' '.repeat(boxWidth) + '┃ ';
       } else if (number === y) {
-        line += '┏' + '━'.repeat(boxWidth) + '┓ ';
+        bar += '┏' + '━'.repeat(boxWidth) + '┓ ';
       } else {
-        line += '  ' + ' '.repeat(boxWidth) + ' ';
+        bar += '  ' + ' '.repeat(boxWidth) + ' ';
       }
+      line += color(bar, x);
     }
     console.log(line);
   }
