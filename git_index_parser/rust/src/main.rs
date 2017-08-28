@@ -1,26 +1,14 @@
 #[macro_use] extern crate nom;
 
+mod parser;
+
 use std::env;
 use std::process;
 use std::path::Path;
 use std::fs::File;
 use std::io::Read;
 
-use nom::{be_u32};
-
-named!(magic_bytes, tag!("DIRC"));
-
-#[derive(Debug)]
-struct GitIndex {
-    version: u32,
-}
-
-named!(git_index<&[u8], GitIndex>, do_parse!(
-    magic_bytes       >>
-    version: be_u32   >>
-
-    (GitIndex { version: version })
-));
+use parser::git_index;
 
 fn exit_with_error<S: Into<String>>(message: S) -> ! {
     println!("{}", message.into());
