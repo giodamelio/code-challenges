@@ -26,13 +26,13 @@ defmodule AOCTest.Puzzles.UtilsTest do
     test "print a variable" do
       hello = "world"
       assert capture_io(fn () -> debug(hello) end) ==
-        ~s(hello: "world"\n)
+        ~s(\e[1mhello\e[22m: "world"\n)
     end
 
     test "print a list" do
       numbers = [1, 2, 3, 4]
       assert capture_io(fn () -> debug(numbers) end) ==
-        ~s(numbers: [1, 2, 3, 4]\n)
+        ~s(\e[1mnumbers\e[22m: [1, 2, 3, 4]\n)
     end
 
     test "debug multiple variables" do
@@ -40,14 +40,14 @@ defmodule AOCTest.Puzzles.UtilsTest do
       letters = ["a", "b", "c", "d"]
 
       assert capture_io(fn () -> debug([numbers, letters]) end) ==
-        ~s(numbers: [1, 2, 3, 4]\nletters: ["a", "b", "c", "d"]\n)
+        ~s(\e[1mnumbers\e[22m: [1, 2, 3, 4]\n\e[1mletters\e[22m: ["a", "b", "c", "d"]\n)
     end
   end
 
   describe "print_variable/1" do
     test "print a name and variable" do
       assert capture_io(fn () -> print_variable("haha", [1, 2, 3]) end) ==
-        ~s(haha: [1, 2, 3]\n)
+        ~s(\e[1mhaha\e[22m: [1, 2, 3]\n)
     end
   end
 
