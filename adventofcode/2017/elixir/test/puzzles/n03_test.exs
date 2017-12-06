@@ -11,12 +11,7 @@ defmodule AOCTest.Puzzles.N03Test do
     |> String.trim
 
     # Parse to integer
-    |> Integer.parse
-
-    # Get just the number without the extra data
-    |> (fn ({n, _}) ->
-      n
-    end).()
+    |> String.to_integer
 
     {:ok, input: input}
   end

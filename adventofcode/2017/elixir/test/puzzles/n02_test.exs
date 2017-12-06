@@ -17,10 +17,7 @@ defmodule AOCTest.Puzzles.N02Test do
 
     # Convert strings to integers
     |> Enum.map(fn (row) ->
-      Enum.map(row, fn (col) ->
-        {num, _} = Integer.parse(col)
-        num
-      end)
+      Enum.map(row, &String.to_integer(&1))
     end)
 
     # IO.inspect input

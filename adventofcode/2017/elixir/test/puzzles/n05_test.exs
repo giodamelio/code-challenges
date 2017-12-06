@@ -13,12 +13,7 @@ defmodule AOCTest.Puzzles.N05Test do
     |> String.split("\n")
 
     # Parse to integer
-    |> Enum.map(&Integer.parse/1)
-
-    # Get just the number without the extra data
-    |> Enum.map(fn ({n, _}) ->
-      n
-    end)
+    |> Enum.map(&String.to_integer(&1))
 
     {:ok, input: input}
   end

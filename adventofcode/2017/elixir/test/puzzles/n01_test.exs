@@ -17,13 +17,8 @@ defmodule AOCTest.Puzzles.N01Test do
       item == ""
     end)
 
-    # Parse it into an {int, remaining_string} tuple
-    |> Enum.map(&Integer.parse/1)
-
-    # Take just the number we want
-    |> Enum.map(fn({num, _}) ->
-      num
-    end)
+    # Parse it into an integer
+    |> Enum.map(&String.to_integer/1)
 
     # IO.inspect input
     {:ok, input: input}

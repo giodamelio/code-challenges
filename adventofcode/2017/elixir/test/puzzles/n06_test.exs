@@ -12,11 +12,8 @@ defmodule AOCTest.Puzzles.N06Test do
     # Split by newlines
     |> String.split("\n")
 
-    # Parse it into an {int, remaining_string} tuple
-    |> Enum.map(&Integer.parse/1)
-
-    # Take just the number we want
-    |> Enum.map(&elem(&1, 0))
+    # Parse it into an integer
+    |> Enum.map(&String.to_integer(&1))
 
     {:ok, input: input}
   end
