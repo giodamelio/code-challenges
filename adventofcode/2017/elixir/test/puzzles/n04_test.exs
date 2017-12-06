@@ -1,6 +1,8 @@
 defmodule AOCTest.Puzzles.N04Test do
   use ExUnit.Case
 
+  import AOC.Puzzles.N04
+
   # Read the puzzle input from a file and parse it
   setup_all do
     {:ok, raw} = File.read("test/puzzles/inputs/04.txt")
@@ -20,49 +22,49 @@ defmodule AOCTest.Puzzles.N04Test do
 
   describe "part_one_is_valid/1" do
     test "aa bb cc dd ee" do
-      assert AOC.Puzzles.N04.part_one_is_valid(["aa", "bb", "cc", "dd", "ee"]) == true
+      assert part_one_is_valid(["aa", "bb", "cc", "dd", "ee"]) == true
     end
 
     test "aa bb cc dd aa" do
-      assert AOC.Puzzles.N04.part_one_is_valid(["aa", "bb", "cc", "dd", "aa"]) == false
+      assert part_one_is_valid(["aa", "bb", "cc", "dd", "aa"]) == false
     end
 
     test "aa bb cc dd aaa" do
-      assert AOC.Puzzles.N04.part_one_is_valid(["aa", "bb", "cc", "dd", "aaa"]) == true
+      assert part_one_is_valid(["aa", "bb", "cc", "dd", "aaa"]) == true
     end
   end
 
   describe "Part 1" do
     test "solution", %{:input => input} do
-      assert AOC.Puzzles.N04.first_half(input) == 466
+      assert first_half(input) == 466
     end
   end
 
   describe "part_two_is_valid/1" do
     test "abcde fghij" do
-      assert AOC.Puzzles.N04.part_two_is_valid(["abcde", "fghij"]) == true
+      assert part_two_is_valid(["abcde", "fghij"]) == true
     end
 
     test "abcde xyz ecdab" do
-      assert AOC.Puzzles.N04.part_two_is_valid(["abcde", "xyz", "ecdab"]) == false
+      assert part_two_is_valid(["abcde", "xyz", "ecdab"]) == false
     end
 
     test "a ab abc abd abf abj" do
-      assert AOC.Puzzles.N04.part_two_is_valid(["a", "ab", "abc", "abd", "abf", "abj"]) == true
+      assert part_two_is_valid(["a", "ab", "abc", "abd", "abf", "abj"]) == true
     end
 
     test "iiii oiii ooii oooi oooo" do
-      assert AOC.Puzzles.N04.part_two_is_valid(["iiii", "oiii", "ooii", "oooi", "oooo"]) == true
+      assert part_two_is_valid(["iiii", "oiii", "ooii", "oooi", "oooo"]) == true
     end
 
     test "oiii ioii iioi iiio" do
-      assert AOC.Puzzles.N04.part_two_is_valid(["oiii", "ioii", "iioi", "iiio"]) == false
+      assert part_two_is_valid(["oiii", "ioii", "iioi", "iiio"]) == false
     end
   end
 
   describe "Part 2" do
     test "solution", %{:input => input} do
-      assert AOC.Puzzles.N04.second_half(input) == 251
+      assert second_half(input) == 251
     end
   end
 end
