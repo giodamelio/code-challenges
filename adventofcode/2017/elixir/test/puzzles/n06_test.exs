@@ -41,7 +41,7 @@ defmodule AOCTest.Puzzles.N06Test do
   end
 
   describe "Part 2" do
-    test "1212" do
+    test "0, 2, 7, 0" do
       assert second_half([0, 2, 7, 0]) == 4
     end
 
