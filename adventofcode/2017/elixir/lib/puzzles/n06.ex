@@ -1,6 +1,4 @@
 defmodule AOC.Puzzles.N06 do
-  require Integer
-
   # Split a block into a list of blocks to be redistributed
   def split_block(block, banks_length) do
     # Create list the length of the blocks filled with zeros
@@ -12,12 +10,6 @@ defmodule AOC.Puzzles.N06 do
     |> Enum.zip
     # Sum each tuple
     |> Enum.map(&Enum.sum(Tuple.to_list(&1)))
-  end
-
-  # Rotate a list n elements to the right looping elements from the end to the start
-  def rotate(list, n) do
-    {start, tail} = Enum.split(list, length(list) - n)
-    tail ++ start
   end
 
   def cycle(banks) do
@@ -34,7 +26,7 @@ defmodule AOC.Puzzles.N06 do
     # after the largest index
     blocks_to_redistribute = largest_block
     |> split_block(length(banks))
-    |> rotate(largest_block_index + 1)
+    |> AOC.Puzzles.Utils.rotate(largest_block_index + 1)
 
     banks
     # Zero out the largest block
