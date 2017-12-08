@@ -38,7 +38,7 @@ defmodule AOC.Puzzles.Utils do
 
   # Print out a single variable
   def print_variable(variable_name, variable_text) do
-    IO.puts("#{IO.ANSI.bright()}#{variable_name}#{IO.ANSI.normal()}: #{inspect variable_text}")
+    IO.puts("#{IO.ANSI.bright()}#{variable_name}#{IO.ANSI.normal()}: #{inspect(variable_text, pretty: true)}")
   end
 
   # Get the name of a variable as a string
