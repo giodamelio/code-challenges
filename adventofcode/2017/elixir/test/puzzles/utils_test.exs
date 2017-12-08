@@ -26,28 +26,29 @@ defmodule AOCTest.Puzzles.UtilsTest do
     test "print a variable" do
       hello = "world"
       assert capture_io(fn () -> debug(hello) end) ==
-        ~s(\e[1mhello\e[22m: "world"\n)
+        ~s(\e[1mhello\e[22m: \e[33m"world"\e[0m\n\n)
     end
 
     test "print a list" do
       numbers = [1, 2, 3, 4]
       assert capture_io(fn () -> debug(numbers) end) ==
-        ~s(\e[1mnumbers\e[22m: [1, 2, 3, 4]\n)
+        ~s(\e[1mnumbers\e[22m: [\n  \e[37m[0] \e[0m\e[34m1\e[0m\n  \e[37m[1] \e[0m\e[34m2\e[0m\n  \e[37m[2] \e[0m\e[34m3\e[0m\n  \e[37m[3] \e[0m\e[34m4\e[0m\n]\n\n)
     end
 
     test "debug multiple variables" do
       numbers = [1, 2, 3, 4]
       letters = ["a", "b", "c", "d"]
 
+
       assert capture_io(fn () -> debug([numbers, letters]) end) ==
-        ~s(\e[1mnumbers\e[22m: [1, 2, 3, 4]\n\e[1mletters\e[22m: ["a", "b", "c", "d"]\n)
+        ~s(\e[1mnumbers\e[22m: [\n  \e[37m[0] \e[0m\e[34m1\e[0m\n  \e[37m[1] \e[0m\e[34m2\e[0m\n  \e[37m[2] \e[0m\e[34m3\e[0m\n  \e[37m[3] \e[0m\e[34m4\e[0m\n]\n\n\e[1mletters\e[22m: [\n  \e[37m[0] \e[0m\e[33m"a"\e[0m\n  \e[37m[1] \e[0m\e[33m"b"\e[0m\n  \e[37m[2] \e[0m\e[33m"c"\e[0m\n  \e[37m[3] \e[0m\e[33m"d"\e[0m\n]\n\n)
     end
   end
 
   describe "print_variable/1" do
     test "print a name and variable" do
       assert capture_io(fn () -> print_variable("haha", [1, 2, 3]) end) ==
-        ~s(\e[1mhaha\e[22m: [1, 2, 3]\n)
+        ~s(\e[1mhaha\e[22m: [\n  \e[37m[0] \e[0m\e[34m1\e[0m\n  \e[37m[1] \e[0m\e[34m2\e[0m\n  \e[37m[2] \e[0m\e[34m3\e[0m\n]\n\n)
     end
   end
 
