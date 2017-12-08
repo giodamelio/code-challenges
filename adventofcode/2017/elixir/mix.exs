@@ -21,6 +21,10 @@ defmodule AOC.Mixfile do
 
   # Run "mix help deps" to learn about dependencies.
   defp deps do
-    [{:mex, "~> 0.0.5", only: [:dev, :test]}]
+    [
+      {:apex, "~> 1.2.0"},
+      {:libgraph, "~> 0.11.1"},
+      {:mex, "~> 0.0.5", only: [:dev, :test]}
+    ]
   end
 end
