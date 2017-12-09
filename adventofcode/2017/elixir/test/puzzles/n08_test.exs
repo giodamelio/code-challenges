@@ -35,12 +35,12 @@ defmodule AOCTest.Puzzles.N08Test do
       # Convert comparison operator to atom
       |> Map.update!(:comparison_operator, fn (operator) ->
         case operator do
-          "==" -> :EQUAL
-          "!=" -> :NOT_EQUAL
-          ">"  -> :GREATER_THEN
-          "<"  -> :LESS_THEN
-          ">=" -> :GREATER_OR_EQUAL
-          "<=" -> :LESS_OR_EQUAL
+          "==" -> :==
+          "!=" -> :!=
+          ">"  -> :>
+          "<"  -> :<
+          ">=" -> :>=
+          "<=" -> :<=
         end
       end)
     end)
@@ -48,25 +48,25 @@ defmodule AOCTest.Puzzles.N08Test do
     # Example to be shared between parts one and two
     example = [
       %{:amount => 5,
-        :comparison_operator => :GREATER_THEN,
+        :comparison_operator => :>,
         :comparison_register => "a",
         :comparison_value => 1,
         :operation => :INC,
         :register => "b"},
       %{:amount => 1,
-        :comparison_operator => :LESS_THEN,
+        :comparison_operator => :<,
         :comparison_register => "b",
         :comparison_value => 5,
         :operation => :INC,
         :register => "a"},
       %{:amount => -10,
-        :comparison_operator => :GREATER_OR_EQUAL,
+        :comparison_operator => :>=,
         :comparison_register => "a",
         :comparison_value => 1,
         :operation => :DEC,
         :register => "c"},
       %{:amount => -20,
-        :comparison_operator => :EQUAL,
+        :comparison_operator => :==,
         :comparison_register => "c",
         :comparison_value => 10,
         :operation => :INC,

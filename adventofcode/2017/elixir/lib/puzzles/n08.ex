@@ -105,14 +105,7 @@ defmodule Registers do
                    :COMPARE,
                    {register, operator, value}}, _from, {registers, max}) do
     register_value = Map.get(registers, register, 0)
-    operator = case operator do
-                :EQUAL            -> :==
-                :NOT_EQUAL        -> :!=
-                :GREATER_THEN     -> :>
-                :LESS_THEN        -> :<
-                :GREATER_OR_EQUAL -> :>=
-                :LESS_OR_EQUAL    -> :<=
-              end
+
     {:reply,
      apply(Kernel, operator, [register_value, value]),
      {registers, max}}
