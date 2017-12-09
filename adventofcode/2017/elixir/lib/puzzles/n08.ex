@@ -4,12 +4,16 @@ defmodule AOC.Puzzles.N08 do
 
     input
     |> Enum.map(fn (op) ->
-      should_run = Registers.op(registry, :COMPARE, {op.comparison_register,
-                                                     op.comparison_operator,
-                                                     op.comparison_value})
+      should_run = Registers.op(
+        registry,
+        :COMPARE,
+        {op.comparison_register,
+         op.comparison_operator,
+         op.comparison_value}
+      )
+
       if should_run do
-        Registers.op(registry, op.operation, {op.register,
-                                              op.amount})
+        Registers.op(registry, op.operation, {op.register, op.amount})
       end
     end)
 
@@ -19,7 +23,10 @@ defmodule AOC.Puzzles.N08 do
   def first_half(input) do
     registry = run(input)
 
-    {_register, value} = Registers.dump(registry)
+    {_register, value} = registry
+    # Dump the registers map
+    |> Registers.dump()
+    # Find the largest register
     |> Enum.max_by(&elem(&1, 1))
 
     value
