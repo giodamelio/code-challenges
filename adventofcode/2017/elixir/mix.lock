@@ -1,3 +1,4 @@
 %{"apex": {:hex, :apex, "1.2.0", "2da5035ef5fc59da2c24187a880b1b6d38b6b67c19b89a6265f5986ff0e85b1f", [:mix], []},
   "libgraph": {:hex, :libgraph, "0.11.1", "c8e7517db426c8b8dd0feb4f0ae8cc4d21d7d26c0f5d88c3bb5dedffd07a8b34", [:mix], []},
+  "memoize": {:hex, :memoize, "1.2.4", "90d5799a0c9b44a02ec814fb45d71b719a06939ed0357f055e93d8935ca1c320", [:mix], []},
   "mex": {:hex, :mex, "0.0.5", "027ae4cfb8b2886a67583dfabb7905b8481fe8d50c22c2137a0e378a54e0e3ec", [:mix], []}}
