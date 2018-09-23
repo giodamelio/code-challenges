@@ -1,0 +1,8 @@
+[package]
+name = "cryptopals"
+version = "0.1.0"
+authors = ["Gio d'Amelio <giodamelio@gmail.com>"]
+edition = "2018"
+publish = false
+
+[dependencies]
