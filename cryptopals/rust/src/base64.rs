@@ -37,7 +37,7 @@ fn process_chunk(input: u32, zeros_are_padding: bool) -> String {
     output
 }
 
-pub fn encode(input: Vec<u8>) -> String {
+pub fn encode(input: &[u8]) -> String {
     let mut output = String::new();
 
     // Loop over chunks of 3 chars and convert them to base64
@@ -72,15 +72,15 @@ mod tests {
     // All of length evenly divisible by 3
     fn simple_bytes() {
         // "Man"
-        assert_eq!(encode(vec![0, 0, 0]), "AAAA");
-        assert_eq!(encode(vec![255, 255, 255]), "////");
+        assert_eq!(encode(&[0, 0, 0]), "AAAA");
+        assert_eq!(encode(&[255, 255, 255]), "////");
 
         // "Man"
-        assert_eq!(encode(vec![77, 97, 110]), "TWFu");
+        assert_eq!(encode(&[77, 97, 110]), "TWFu");
 
         // "Hello World!"
         assert_eq!(
-            encode(vec![72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 33]),
+            encode(&[72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 33]),
             "SGVsbG8gV29ybGQh"
         );
     }
@@ -88,9 +88,9 @@ mod tests {
     #[test]
     fn padded_end() {
         // "AA"
-        assert_eq!(encode(vec![65, 65]), "QUE=");
+        assert_eq!(encode(&[65, 65]), "QUE=");
 
         // "A"
-        assert_eq!(encode(vec![65]), "QQ==");
+        assert_eq!(encode(&[65]), "QQ==");
     }
 }
