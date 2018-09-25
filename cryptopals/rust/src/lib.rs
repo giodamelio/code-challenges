@@ -28,7 +28,7 @@ mod set1 {
         let bytes2 = hex::decode(input2).expect("Failed to parse hex input 2");
 
         assert_eq!(
-            hex::encode(&bitops::xor(&bytes1, &bytes2)),
+            hex::encode(&bitops::slice_xor_slice(&bytes1, &bytes2)),
             "746865206B696420646F6E277420706C6179"
         );
     }
