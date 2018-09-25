@@ -10,7 +10,7 @@ mod set1 {
     use super::*;
 
     #[test]
-    fn problem1() {
+    fn challenge1() {
         let input = "49276d206b696c6c696e6720796f757220627261696e206c696b65206120706f69736f6e6f7573206d757368726f6f6d";
         let bytes = hex::decode(input).expect("Failed to parse hex input");
 
@@ -21,7 +21,7 @@ mod set1 {
     }
 
     #[test]
-    fn problem2() {
+    fn challenge2() {
         let input1 = "1c0111001f010100061a024b53535009181c";
         let input2 = "686974207468652062756c6c277320657965";
         let bytes1 = hex::decode(input1).expect("Failed to parse hex input 1");
