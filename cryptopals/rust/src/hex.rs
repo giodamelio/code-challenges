@@ -31,7 +31,7 @@ impl error::Error for HexToBytesError {
     }
 }
 
-pub fn string_to_bytes(input: &str) -> Result<Vec<u8>, HexToBytesError> {
+pub fn decode(input: &str) -> Result<Vec<u8>, HexToBytesError> {
     let bytes: Vec<_> = input.chars().collect();
 
     if bytes.len() % 2 != 0 || bytes.len() < 2 {
@@ -57,31 +57,22 @@ mod tests {
 
     #[test]
     fn simple_hex() {
-        assert_eq!(string_to_bytes("FFFF").unwrap(), &[255, 255]);
-        assert_eq!(string_to_bytes("0000").unwrap(), &[0, 0]);
+        assert_eq!(decode("FFFF").unwrap(), &[255, 255]);
+        assert_eq!(decode("0000").unwrap(), &[0, 0]);
     }
 
     #[test]
     fn invalid_hex() {
         assert_eq!(
-            string_to_bytes("ZZZZ").unwrap_err(),
+            decode("ZZZZ").unwrap_err(),
             HexToBytesError::InvalidChar('Z')
         )
     }
 
     #[test]
     fn not_in_pairs() {
-        assert_eq!(
-            string_to_bytes("F").unwrap_err(),
-            HexToBytesError::InvalidLength
-        );
-        assert_eq!(
-            string_to_bytes("FFF").unwrap_err(),
-            HexToBytesError::InvalidLength
-        );
-        assert_eq!(
-            string_to_bytes("").unwrap_err(),
-            HexToBytesError::InvalidLength
-        );
+        assert_eq!(decode("F").unwrap_err(), HexToBytesError::InvalidLength);
+        assert_eq!(decode("FFF").unwrap_err(), HexToBytesError::InvalidLength);
+        assert_eq!(decode("").unwrap_err(), HexToBytesError::InvalidLength);
     }
 }
