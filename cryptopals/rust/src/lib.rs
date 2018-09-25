@@ -1,6 +1,7 @@
 #![feature(exact_chunks)]
 
 pub mod base64;
+pub mod bitops;
 pub mod hex;
 pub mod utils;
 
