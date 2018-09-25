@@ -5,4 +5,8 @@ authors = ["Gio d'Amelio <giodamelio@gmail.com>"]
 edition = "2018"
 publish = false
 
+[lib]
+name = "cryptopals"
+path = "src/lib.rs"
+
 [dependencies]
