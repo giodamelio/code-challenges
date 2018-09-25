@@ -43,10 +43,10 @@ pub fn string_to_bytes(input: &str) -> Result<Vec<u8>, HexToBytesError> {
         .map(|chunk| {
             let chunk0 = chunk[0]
                 .to_digit(16)
-                .ok_or(HexToBytesError::InvalidChar(chunk[0]))?;
+                .ok_or_else(|| HexToBytesError::InvalidChar(chunk[0]))?;
             let chunk1 = chunk[1]
                 .to_digit(16)
-                .ok_or(HexToBytesError::InvalidChar(chunk[1]))?;
+                .ok_or_else(|| HexToBytesError::InvalidChar(chunk[1]))?;
             Ok(((chunk0 << 4) | chunk1) as u8)
         }).collect()
 }
