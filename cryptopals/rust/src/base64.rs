@@ -37,6 +37,10 @@ fn process_chunk(input: u32, zeros_are_padding: bool) -> String {
     output
 }
 
+fn chunk_to_u32(input: &[u8]) -> u32 {
+    (u32::from(input[0]) << 16) | (u32::from(input[1]) << 8) | u32::from(input[2])
+}
+
 pub fn encode(input: &[u8]) -> String {
     let mut output = String::new();
 
@@ -44,8 +48,7 @@ pub fn encode(input: &[u8]) -> String {
     let chunks = input.exact_chunks(3);
     let mut remainder = chunks.remainder().to_vec();
     for chunk in chunks {
-        let combined =
-            (u32::from(chunk[0]) << 16) | (u32::from(chunk[1]) << 8) | u32::from(chunk[2]);
+        let combined = chunk_to_u32(chunk);
         output.push_str(&process_chunk(combined, false));
     }
 
@@ -53,12 +56,7 @@ pub fn encode(input: &[u8]) -> String {
     let pad_length = (3 - remainder.len() % 3) % 3;
     if pad_length > 0 {
         remainder.append(&mut vec![0; pad_length]);
-        output.push_str(&process_chunk(
-            (u32::from(remainder[0]) << 16)
-                | (u32::from(remainder[1]) << 8)
-                | u32::from(remainder[2]),
-            true,
-        ));
+        output.push_str(&process_chunk(chunk_to_u32(&remainder), true));
     }
 
     output
