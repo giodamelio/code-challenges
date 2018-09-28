@@ -45,7 +45,7 @@ pub fn encode(input: &[u8]) -> String {
     let mut output = String::new();
 
     // Loop over chunks of 3 chars and convert them to base64
-    let chunks = input.exact_chunks(3);
+    let chunks = input.chunks_exact(3);
     let mut remainder = chunks.remainder().to_vec();
     for chunk in chunks {
         let combined = chunk_to_u32(chunk);

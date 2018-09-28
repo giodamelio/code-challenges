@@ -40,7 +40,7 @@ pub fn decode(input: &str) -> Result<Vec<u8>, HexToBytesError> {
     }
 
     bytes
-        .exact_chunks(2)
+        .chunks_exact(2)
         .map(|chunk| {
             let chunk0 = chunk[0]
                 .to_digit(16)
@@ -49,7 +49,8 @@ pub fn decode(input: &str) -> Result<Vec<u8>, HexToBytesError> {
                 .to_digit(16)
                 .ok_or_else(|| HexToBytesError::InvalidChar(chunk[1]))?;
             Ok(((chunk0 << 4) | chunk1) as u8)
-        }).collect()
+        })
+        .collect()
 }
 
 pub fn encode(input: &[u8]) -> String {
@@ -60,7 +61,8 @@ pub fn encode(input: &[u8]) -> String {
                 char::from_digit(u32::from((*digit >> 4) & 0b0000_1111), 16),
                 char::from_digit(u32::from(*digit & 0b0000_1111), 16),
             ]
-        }).flatten()
+        })
+        .flatten()
         // c will always be Some(char) since we can never have an input larget then one byte large
         .map(|c| c.unwrap())
         .collect::<String>()

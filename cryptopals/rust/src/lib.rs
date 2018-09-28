@@ -1,4 +1,4 @@
-#![feature(exact_chunks)]
+#![feature(chunks_exact)]
 
 pub mod base64;
 pub mod bitops;
