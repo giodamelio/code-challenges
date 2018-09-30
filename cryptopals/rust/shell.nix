@@ -6,5 +6,8 @@ in
   nixpkgs.mkShell {
     buildInputs = [
       nixpkgs.latest.rustChannels.nightly.rust
+      nixpkgs.latest.rustChannels.nightly.rust-src
+      nixpkgs.rustracer
     ];
+    RUST_SRC_PATH="${nixpkgs.latest.rustChannels.nightly.rust-src}/lib/rustlib/src/rust/src";
   }
