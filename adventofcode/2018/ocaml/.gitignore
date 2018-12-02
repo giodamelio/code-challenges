@@ -1,1 +1,4 @@
 .opam/
+_build/
+
+*.native
