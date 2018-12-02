@@ -1,7 +1,8 @@
 (ns aoc.core-test
+  (:use midje.sweet)
   (:require [clojure.test :refer :all]
             [aoc.core :refer :all]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
+(facts "haha"
+  [1 2 3] => [1 2 3 4]
+  [1 2 3] => [1 2 3])
