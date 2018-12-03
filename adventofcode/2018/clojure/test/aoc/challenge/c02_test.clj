@@ -18,7 +18,7 @@
        (has-n-duplicates 3 {:a 2}) => false)
 
 (facts "count-duplicates-of-n"
-       (count-duplcates-of-n [{:a 2} {:b 2} {:c 3}] 2) => 2)
+       (count-duplicates-of-n [{:a 2} {:b 2} {:c 3}] 2) => 2)
 
 (facts "letter-diff"
        (letter-diff "aaa" "aaa") => [false false false]
