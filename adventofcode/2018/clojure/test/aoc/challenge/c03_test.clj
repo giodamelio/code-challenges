@@ -53,5 +53,5 @@
        ;; (answer-part-1 (load-input)) => 4)
 
 (facts "answer-part-2"
-       (answer-part-2 example-input :width 8 :height 8) => 3
-       (answer-part-2 (load-input)) => 3)
+       (answer-part-2 example-input :width 8 :height 8) => 3)
+       ;; (answer-part-2 (load-input)) => 3)
