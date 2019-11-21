@@ -1,16 +1,10 @@
 defmodule AOCTest.Puzzles.N01Test do
   use ExUnit.Case
+  # use AOCTest.Haha
+  # use AOCTest.Puzzle, part1_parse: :integer, part2_parse: :integer
+  use AOCTest.TryThree
 
   import AOC.Puzzles.N01
-
-  # Read the puzzle input from a file and parse it
-  setup_all do
-    {:ok, raw} = File.read("test/puzzles/inputs/01.txt")
-
-    input = parse(raw)
-
-    {:ok, input: input}
-  end
 
   describe "Parse" do
     test "valid list" do
@@ -31,9 +25,9 @@ defmodule AOCTest.Puzzles.N01Test do
       assert first_half([-1, -2, -3]) == -6
     end
 
-    test "solution", %{:input => input} do
-      assert first_half(input) == 497
-    end
+    # test "solution", %{:input => input} do
+    #   assert first_half(input) == @answer_part_1
+    # end
   end
 
   describe "Part 2" do
@@ -53,8 +47,8 @@ defmodule AOCTest.Puzzles.N01Test do
       assert second_half([7, 7, -2, -7, -4]) == 14
     end
 
-    test "solution", %{:input => input} do
-      assert second_half(input) == 558
-    end
+    # test "solution", %{:input => input} do
+    #   assert second_half(input) == @answer_part_2
+    # end
   end
 end
