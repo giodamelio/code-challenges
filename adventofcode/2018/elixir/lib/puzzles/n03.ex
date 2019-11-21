@@ -13,7 +13,7 @@ defmodule AOC.Puzzles.N03 do
   def parse(input) do
     input
     # Trim surronding whitespace and newlines
-    |> String.trim
+    |> String.trim()
     # Split on each line
     |> String.split("\n")
     # Parse each line
@@ -22,10 +22,11 @@ defmodule AOC.Puzzles.N03 do
 
   def add_claim_to_fabric(claim, fabric) do
     # Create a list of coords that is claimed
-    coords_list = for x <- (claim.x)..(claim.x + claim.width - 1),
-                      y <- (claim.y)..(claim.y + claim.height - 1) do
-      {x, y}
-    end
+    coords_list =
+      for x <- claim.x..(claim.x + claim.width - 1),
+          y <- claim.y..(claim.y + claim.height - 1) do
+        {x, y}
+      end
 
     coords_list
     # Go through the coords and add them to the fabric
@@ -39,11 +40,11 @@ defmodule AOC.Puzzles.N03 do
     # Start with an empty fabric and fill it with the squares from the input
     |> Enum.reduce(%{}, &add_claim_to_fabric/2)
     # Get just the values
-    |> Map.values
+    |> Map.values()
     # Keep just the ones with more then one claim
     |> Enum.filter(&(MapSet.size(&1) > 1))
     # Count them
-    |> Enum.count
+    |> Enum.count()
   end
 
   def second_half(input) do
@@ -54,7 +55,7 @@ defmodule AOC.Puzzles.N03 do
     # Start with an empty fabric and fill it with the squares from the input
     |> Enum.reduce(%{}, &add_claim_to_fabric/2)
     # Get just the values
-    |> Map.values
+    |> Map.values()
     # Keep just the ones with more then one claim
     |> Enum.filter(&(MapSet.size(&1) > 1))
     # Remove any ids that claim a shared spot from the list of all ids
@@ -62,7 +63,7 @@ defmodule AOC.Puzzles.N03 do
       MapSet.difference(remaining_ids, claim_ids)
     end)
     # Get the single remaining id
-    |> MapSet.to_list
-    |> List.first
+    |> MapSet.to_list()
+    |> List.first()
   end
 end

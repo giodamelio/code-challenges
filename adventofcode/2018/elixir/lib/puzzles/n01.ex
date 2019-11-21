@@ -2,7 +2,7 @@ defmodule AOC.Puzzles.N01 do
   def parse(input) do
     input
     # Trim surronding whitespace and newlines
-    |> String.trim
+    |> String.trim()
 
     # Split on each line
     |> String.split("\n")
@@ -12,7 +12,7 @@ defmodule AOC.Puzzles.N01 do
   end
 
   def first_half(input) do
-    Enum.sum(input);
+    Enum.sum(input)
   end
 
   def second_half(input) do

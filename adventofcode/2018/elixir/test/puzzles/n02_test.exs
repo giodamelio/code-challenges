@@ -24,21 +24,21 @@ defmodule AOCTest.Puzzles.N02Test do
   describe "letter_counts" do
     test "a few repeats" do
       assert letter_counts("bababc") == %{
-        "a" => 2,
-        "b" => 3,
-        "c" => 1
-      }
+               "a" => 2,
+               "b" => 3,
+               "c" => 1
+             }
     end
 
     test "no repeats" do
       assert letter_counts("abcdef") == %{
-        "a" => 1,
-        "b" => 1,
-        "c" => 1,
-        "d" => 1,
-        "e" => 1,
-        "f" => 1
-      }
+               "a" => 1,
+               "b" => 1,
+               "c" => 1,
+               "d" => 1,
+               "e" => 1,
+               "f" => 1
+             }
     end
   end
 
