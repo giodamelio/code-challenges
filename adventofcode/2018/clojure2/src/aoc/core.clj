@@ -1,4 +1,4 @@
-(ns clojure2.core)
+(ns aoc.core)
 
 (defn foo
   "I don't do a whole lot."
