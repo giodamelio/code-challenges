@@ -1,0 +1,10 @@
+{
+  "src/*.clj": {
+    "type": "src",
+    "alternate": "test/{}_test.clj"
+  },
+  "test/*_test.clj": {
+    "type": "test",
+    "alternate": "src/{}.clj"
+  }
+}
