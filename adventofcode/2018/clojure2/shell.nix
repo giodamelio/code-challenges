@@ -2,7 +2,7 @@
 pkgs.mkShell {
   buildInputs = with pkgs; [
     clojure
-    boot
+    leiningen
   ];
   shellHook = ''
   '';
