@@ -1,4 +1,4 @@
-(ns clojure-try-two.core)
+(ns clojure2.core)
 
 (defn foo
   "I don't do a whole lot."
