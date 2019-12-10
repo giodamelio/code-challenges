@@ -39,4 +39,4 @@
   (part-1-assertion))
 
 (deftest part-2
-  (part-2-assertion))
+  (part-2-assertion 19690720))

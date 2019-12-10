@@ -21,14 +21,14 @@
 
 (defmacro part-1-assertion
   "Create an assertion for part one of a puzzle based on file input and the current namespace"
-  []
-  `(is (= (str (p/part-1 (p/parse (get-puzzle-file "input" *ns*))))
+  [& extra-args]
+  `(is (= (str (p/part-1 (p/parse (get-puzzle-file "input" *ns*)) ~@extra-args))
           (get-puzzle-file "answer_1" *ns*))
        "answer 1 is incorrect"))
 
 (defmacro part-2-assertion
   "Create an assertion for part two of a puzzle based on file input and the current namespace"
-  []
-  `(is (= (str (p/part-2 (p/parse (get-puzzle-file "input" *ns*))))
+  [& extra-args]
+  `(is (= (str (p/part-2 (p/parse (get-puzzle-file "input" *ns*)) ~@extra-args))
           (get-puzzle-file "answer_2" *ns*))
        "answer 2 is incorrect"))

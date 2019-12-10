@@ -102,7 +102,7 @@
   (run-with-inputs program 12 02))
 
 (defn part-2
-  [program]
+  [program target]
   (as-> all-noun-verb-combos $
     ;; Run the program with each combo input and store outputs and noun-verb combos in a map
     (reduce
@@ -114,7 +114,7 @@
       {}
       $)
     ;; Get just the item we want
-    (get $ 19690720)
+    (get $ target)
     ;; Calculate the answer (100 * noun + verb)
     (apply
       (fn [noun verb]
